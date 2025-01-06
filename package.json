@@ -5,7 +5,7 @@
   "main": "src/app.ts",
   "scripts": {
     "start": "node dist/app.js",
-    "build": "tsc && copyfiles -u 1 src/data/urls.json dist/data",
+    "build": "tsc",
     "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
