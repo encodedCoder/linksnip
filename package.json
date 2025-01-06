@@ -4,8 +4,8 @@
   "description": "A simple link shortener application.",
   "main": "src/app.ts",
   "scripts": {
-    "start": "ts-node src/app.ts",
-    "build": "tsc",
+    "start": "node dist/app.js",
+    "build": "tsc && copyfiles -u 1 src/data/urls.json dist/data",
     "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
@@ -18,6 +18,7 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^16.11.7",
+    "copyfiles": "^2.4.1",
     "ts-node": "^10.4.0"
   },
   "author": "",
