@@ -20,7 +20,9 @@ export const createShortUrl = (req: Request, res: Response) => {
   urls.push(newUrl);
   fs.writeFileSync(urlsFilePath, JSON.stringify(urls, null, 2));
 
-  res.json({ shortUrl: `http://localhost:3000/${shortCode}` });
+  res.json({
+    shortUrl: `https://link-shortner-k5b9.onrender.com/${shortCode}`,
+  });
 };
 
 export const redirectUrl = (req: Request, res: Response) => {

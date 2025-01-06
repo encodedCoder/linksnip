@@ -13,12 +13,23 @@ This is a simple link shortener application built with TypeScript and Express. I
 link-shortener-app
 ├── src
 │   ├── app.ts                # Entry point of the application
-│   ├── controllers           # Contains the LinkController
-│   │   └── index.ts
+│   ├── controllers           # Contains the URL controllers
+│   │   ├── index.ts
+│   │   └── urlController.ts
+│   ├── data                  # Contains data files
+│   │   └── urls.json
+│   ├── models                # Contains data models
+│   │   └── urlModel.ts
 │   ├── routes                # Defines application routes
 │   │   └── index.ts
-│   └── types                 # Type definitions
-│       └── index.ts
+│   ├── types                 # Type definitions
+│   │   └── index.ts
+│   └── utils                 # Utility functions
+│       └── generateShortCode.ts
+├── public                    # Contains static files
+│   ├── index.html
+│   ├── scripts.js
+│   └── styles.css
 ├── package.json              # NPM package configuration
 ├── tsconfig.json             # TypeScript configuration
 └── README.md                 # Project documentation
@@ -41,13 +52,17 @@ link-shortener-app
 
 ## Usage
 
-1. Start the application:
+1. Build the application:
+   ```
+   npm run build
+   ```
+2. Start the application:
    ```
    npm start
    ```
-2. Use the following endpoints:
+3. Use the following endpoints:
    - **POST /shorten**: Create a shortened link.
-   - **GET /:shortLink**: Retrieve the original URL.
+   - **GET /:shortCode**: Retrieve the original URL.
 
 ## Contributing
 
