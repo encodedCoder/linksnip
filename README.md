@@ -43,11 +43,11 @@ link-shortner
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/link-shortener-app.git
+   git clone https://github.com/yourusername/link-shortner.git
    ```
 2. Navigate to the project directory:
    ```
-   cd link-shortener-app
+   cd link-shortner
    ```
 3. Install the dependencies:
    ```
