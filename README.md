@@ -1,4 +1,8 @@
-# Link Shortener App
+# Link Shortner
+
+## by [encodedcoder](https://www.encodedcoder.online/)
+
+Access Here: [Link Shortner](https://link-shortner-k5b9.onrender.com/)
 
 This is a simple link shortener application built with TypeScript and Express. It allows users to create shortened links and retrieve the original URLs.
 
@@ -10,7 +14,7 @@ This is a simple link shortener application built with TypeScript and Express. I
 ## Project Structure
 
 ```
-link-shortener-app
+link-shortner
 ├── src
 │   ├── app.ts                # Entry point of the application
 │   ├── controllers           # Contains the URL controllers
