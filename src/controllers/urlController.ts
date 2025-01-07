@@ -20,8 +20,12 @@ export const createShortUrl = (req: Request, res: Response) => {
   urls.push(newUrl);
   fs.writeFileSync(urlsFilePath, JSON.stringify(urls, null, 2));
 
+  const baseUrl =
+    req.hostname === "localhost"
+      ? `http://localhost:${process.env.PORT || 3000}`
+      : "https://link-shortner-k5b9.onrender.com";
   res.json({
-    shortUrl: `https://link-shortner-k5b9.onrender.com/${shortCode}`,
+    shortUrl: `${baseUrl}/${shortCode}`,
   });
 };
 
