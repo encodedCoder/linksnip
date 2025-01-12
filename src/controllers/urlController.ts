@@ -24,6 +24,7 @@ export async function createShortUrl(
   }
 
   const shortCode = generateShortCode();
+  console.log("Generated short code:", shortCode);
   const hostname = req.hostname;
   const url = new UrlModel({ originalUrl, shortCode, hostname });
 
@@ -36,13 +37,14 @@ export async function createShortUrl(
     if (hostname === "localhost") {
       baseUrl = `http://localhost:${config.port}`;
     } else {
-      baseUrl = `http://${hostname}`;
+      baseUrl = `http://${hostname}`; // Fallback URL
     }
 
-    console.log("Base URL:", baseUrl);
+    const shortenedUrl = `${baseUrl}/${shortCode}`;
+    console.log("Shortened URL:", shortenedUrl);
 
     res.json({
-      shortenedUrl: `${baseUrl}/${shortCode}`,
+      shortenedUrl: shortenedUrl,
     });
   } catch (error) {
     console.error("Error saving URL:", error);
