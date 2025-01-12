@@ -2361,8 +2361,8 @@ declare module "fs" {
 
     interface StreamOptions {
         flags?: string | undefined;
-        encoding?: BufferEncoding | undefined;
-        fd?: number | undefined;
+        encoding?: BufferEncoding | null | undefined;
+        fd?: number | promises.FileHandle | null | undefined;
         mode?: number | undefined;
         autoClose?: boolean | undefined;
         emitClose?: boolean | undefined;

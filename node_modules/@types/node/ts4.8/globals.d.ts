@@ -115,7 +115,6 @@ interface AbortSignal {
      * @since v14.7.0
      */
     readonly aborted: boolean;
-    readonly reason: any;
 }
 
 declare var AbortController: {
@@ -126,8 +125,7 @@ declare var AbortController: {
 declare var AbortSignal: {
     prototype: AbortSignal;
     new(): AbortSignal;
-    abort(reason?: any): AbortSignal;
-    timeout(milliseconds: number): AbortSignal;
+    // TODO: Add abort() static
 };
 // #endregion borrowed
 
@@ -545,7 +543,7 @@ declare namespace NodeJS {
         /**
          * Name of the script [if this function was defined in a script]
          */
-        getFileName(): string | undefined;
+        getFileName(): string | null;
 
         /**
          * Current line number [if this function was defined in a script]

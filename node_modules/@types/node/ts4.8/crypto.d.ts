@@ -334,7 +334,7 @@ declare module "crypto" {
     function createPublicKey(key: PublicKeyInput | string | Buffer | KeyObject): KeyObject;
     function createSecretKey(key: NodeJS.ArrayBufferView): KeyObject;
 
-    function createSign(algorithm: string, options?: stream.WritableOptions): Sign;
+    function createSign(algorithm: string, options?: stream.WritableOptions): Signer;
 
     type DSAEncoding = "der" | "ieee-p1363";
 
@@ -358,11 +358,11 @@ declare module "crypto" {
 
     type KeyLike = string | Buffer | KeyObject;
 
-    class Sign extends stream.Writable {
+    class Signer extends stream.Writable {
         private constructor();
 
-        update(data: BinaryLike): Sign;
-        update(data: string, input_encoding: Encoding): Sign;
+        update(data: BinaryLike): Signer;
+        update(data: string, input_encoding: Encoding): Signer;
         sign(private_key: KeyLike | SignKeyObjectInput | SignPrivateKeyInput): Buffer;
         sign(
             private_key: KeyLike | SignKeyObjectInput | SignPrivateKeyInput,
@@ -522,8 +522,8 @@ declare module "crypto" {
          */
         disableEntropyCache?: boolean | undefined;
     }
-    type UUID = `${string}-${string}-${string}-${string}-${string}`;
-    function randomUUID(options?: RandomUUIDOptions): UUID;
+
+    function randomUUID(options?: RandomUUIDOptions): string;
 
     interface ScryptOptions {
         cost?: number | undefined;
