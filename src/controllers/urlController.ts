@@ -23,7 +23,7 @@ export const createShortUrl = (req: Request, res: Response) => {
   const baseUrl =
     req.hostname === "localhost"
       ? `http://localhost:${process.env.PORT || 3000}`
-      : "https://link-shortner-k5b9.onrender.com";
+      : "clipp.work";
   res.json({
     shortUrl: `${baseUrl}/${shortCode}`,
   });
