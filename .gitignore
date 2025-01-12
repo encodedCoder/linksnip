@@ -2,3 +2,7 @@
 vercel.json
 /src/data/urls.json
 /dist/data/urls.json
+
+config.ts
+node_modules/
+.env
