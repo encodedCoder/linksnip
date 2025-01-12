@@ -4,9 +4,8 @@
   "description": "A simple link shortener application.",
   "main": "src/app.ts",
   "scripts": {
-    "prebuild": "chmod +x ./node_modules/.bin/tsc",
-    "start": "node dist/index.js",
-    "build": "tsc",
+    "start": "ts-node src/app.ts",
+    "build": "ts-node --transpile-only src/app.ts",
     "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
