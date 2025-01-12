@@ -1,2 +1,4 @@
 .vercel
 vercel.json
+/src/data/urls.json
+/dist/data/urls.json

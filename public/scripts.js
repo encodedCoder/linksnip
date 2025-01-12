@@ -11,13 +11,15 @@ $(document).ready(function () {
       data: JSON.stringify({ originalUrl }),
       success: function (response) {
         $("#result").html(
-          `<p>Shortened URL: <a href="${response.shortUrl}" target="_blank">${response.shortUrl}</a></p>`
+          `<p>Shortened URL: <a href="${response.shortenedUrl}" target="_blank">${response.shortenedUrl}</a></p>`
         );
       },
       error: function (xhr) {
-        $("#result").html(
-          `<p class="text-danger">${xhr.responseJSON.message}</p>`
-        );
+        let errorMessage = "An error occurred";
+        if (xhr.responseJSON && xhr.responseJSON.message) {
+          errorMessage = xhr.responseJSON.message;
+        }
+        $("#result").html(`<p class="text-danger">${errorMessage}</p>`);
       },
     });
   });
