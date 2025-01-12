@@ -32,6 +32,7 @@ export async function createShortUrl(
     await url.save();
 
     let baseUrl: string;
+    console.log("Hostname:", req.hostname);
 
     if (req.hostname === "localhost") {
       baseUrl = `http://localhost:${process.env.PORT || 3000}`;
@@ -44,6 +45,9 @@ export async function createShortUrl(
     } else {
       baseUrl = "https://default-url.com"; // Fallback URL
     }
+
+    console.log("Base URL:", baseUrl);
+
     res.json({
       shortenedUrl: `${baseUrl}/${shortCode}`,
     });
