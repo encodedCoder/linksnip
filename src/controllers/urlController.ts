@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
-import { UrlModel } from "../models/urlModel";
-import fs from "fs";
-import path from "path";
-
-const urlsFilePath = path.join(__dirname, "../data/urls.json");
+import UrlModel from "../models/urlModel";
+import { generateShortCode, isValidUrl } from "../utils";
+import { config } from "../config";
 
 export async function createShortUrl(
   req: Request,
@@ -26,24 +24,19 @@ export async function createShortUrl(
   }
 
   const shortCode = generateShortCode();
-  const url = new UrlModel({ originalUrl, shortCode });
+  const hostname = req.hostname;
+  const url = new UrlModel({ originalUrl, shortCode, hostname });
 
   try {
     await url.save();
 
     let baseUrl: string;
-    console.log("Hostname:", req.hostname);
+    console.log("Hostname:", hostname);
 
-    if (req.hostname === "localhost") {
-      baseUrl = `http://localhost:${process.env.PORT || 3000}`;
-    } else if (req.hostname === "clipp.vercel.app") {
-      baseUrl = "https://clipp.vercel.app";
-    } else if (req.hostname === "clipp.work") {
-      baseUrl = "https://clipp.work";
-    } else if (req.hostname === "link-shortner-k5b9.onrender.com") {
-      baseUrl = "https://link-shortner-k5b9.onrender.com";
+    if (hostname === "localhost") {
+      baseUrl = `http://localhost:${config.port}`;
     } else {
-      baseUrl = "https://default-url.com"; // Fallback URL
+      baseUrl = `http://${hostname}`;
     }
 
     console.log("Base URL:", baseUrl);
@@ -67,31 +60,9 @@ export async function redirectUrl(req: Request, res: Response): Promise<void> {
       return;
     }
 
-    const currentTime = new Date().getTime();
-    const expirationTime =
-      new Date(url.createdAt).getTime() + 7 * 24 * 60 * 60 * 1000;
-
-    if (currentTime > expirationTime) {
-      res.status(410).send("Link expired");
-      return;
-    }
-
     res.redirect(url.originalUrl);
   } catch (error) {
-    console.error("Error retrieving URL:", error);
+    console.error("Error redirecting URL:", error);
     res.status(500).json({ message: "Internal Server Error" });
-  }
-}
-
-function generateShortCode(): string {
-  return Math.random().toString(36).substring(2, 8);
-}
-
-function isValidUrl(url: string): boolean {
-  try {
-    new URL(url);
-    return true;
-  } catch (e) {
-    return false;
   }
 }

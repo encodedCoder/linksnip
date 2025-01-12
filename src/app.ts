@@ -4,19 +4,12 @@ import path from "path";
 import mongoose from "mongoose";
 import { setRoutes } from "./routes";
 import { config } from "./config";
-import dotenv from "dotenv";
-
-// Load environment variables from .env file
-dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
-
-// MongoDB connection URI
-const { mongoUri, dbName } = config;
+const port = config.port;
 
 mongoose
-  .connect(mongoUri, { dbName })
+  .connect(config.mongodbUri)
   .then(() => {
     console.log("Connected to MongoDB");
   })
