@@ -26,26 +26,17 @@ export async function createShortUrl(
   const shortCode = generateShortCode();
   console.log("Generated short code:", shortCode);
   const hostname = req.hostname;
+  const protocol = req.protocol;
+  console.log("Hostname:", hostname);
+  console.log("Protocol:", protocol);
+
   const url = new UrlModel({ originalUrl, shortCode, hostname });
 
   try {
     await url.save();
 
-    let baseUrl: string;
-    baseUrl = "https://clipp.vercel.app";
-    console.log("Hostname:", hostname);
-
-    if (hostname === "localhost") {
-      baseUrl = `http://localhost:${config.port}`;
-    } else if (hostname === "clipp.vercel.app") {
-      baseUrl = "https://clipp.vercel.app";
-    } else if (hostname === "clipp.work") {
-      baseUrl = "https://clipp.work";
-    } else if (hostname === "link-shortner-k5b9.onrender.com") {
-      baseUrl = "https://link-shortner-k5b9.onrender.com";
-    } else {
-      baseUrl = `http://${hostname}`; // Fallback URL
-    }
+    const baseUrl = `${protocol}://${hostname}`;
+    console.log("Base URL:", baseUrl);
 
     const shortenedUrl = `${baseUrl}/${shortCode}`;
     console.log("Shortened URL:", shortenedUrl);
@@ -61,14 +52,17 @@ export async function createShortUrl(
 
 export async function redirectUrl(req: Request, res: Response): Promise<void> {
   const { shortCode } = req.params;
+  console.log("Received request to redirect:", shortCode);
 
   try {
     const url = await UrlModel.findOne({ shortCode });
     if (!url) {
+      console.error("Short code not found:", shortCode);
       res.status(404).send("Invalid link");
       return;
     }
 
+    console.log("Redirecting to:", url.originalUrl);
     res.redirect(url.originalUrl);
   } catch (error) {
     console.error("Error redirecting URL:", error);
