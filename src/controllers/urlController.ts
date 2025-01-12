@@ -35,17 +35,17 @@ export async function createShortUrl(
     baseUrl = "https://clipp.vercel.app";
     console.log("Hostname:", hostname);
 
-    // if (hostname === "localhost") {
-    //   baseUrl = `http://localhost:${config.port}`;
-    // } else if (hostname === "clipp.vercel.app") {
-    //   baseUrl = "https://clipp.vercel.app";
-    // } else if (hostname === "clipp.work") {
-    //   baseUrl = "https://clipp.work";
-    // } else if (hostname === "link-shortner-k5b9.onrender.com") {
-    //   baseUrl = "https://link-shortner-k5b9.onrender.com";
-    // } else {
-    //   baseUrl = `http://${hostname}`; // Fallback URL
-    // }
+    if (hostname === "localhost") {
+      baseUrl = `http://localhost:${config.port}`;
+    } else if (hostname === "clipp.vercel.app") {
+      baseUrl = "https://clipp.vercel.app";
+    } else if (hostname === "clipp.work") {
+      baseUrl = "https://clipp.work";
+    } else if (hostname === "link-shortner-k5b9.onrender.com") {
+      baseUrl = "https://link-shortner-k5b9.onrender.com";
+    } else {
+      baseUrl = `http://${hostname}`; // Fallback URL
+    }
 
     const shortenedUrl = `${baseUrl}/${shortCode}`;
     console.log("Shortened URL:", shortenedUrl);
