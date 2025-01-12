@@ -26,20 +26,13 @@ export async function createShortUrl(
   const shortCode = generateShortCode();
   console.log("Generated short code:", shortCode);
   const hostname = req.hostname;
+  const protocol = req.protocol;
   const url = new UrlModel({ originalUrl, shortCode, hostname });
 
   try {
     await url.save();
 
-    let baseUrl: string;
-    console.log("Hostname:", hostname);
-
-    if (hostname === "localhost") {
-      baseUrl = `http://localhost:${config.port}`;
-    } else {
-      baseUrl = `http://${hostname}`; // Fallback URL
-    }
-
+    const baseUrl = `${protocol}://${hostname}`;
     const shortenedUrl = `${baseUrl}/${shortCode}`;
     console.log("Shortened URL:", shortenedUrl);
 
