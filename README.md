@@ -1,6 +1,6 @@
-# Link Shortner
+# LinkSnip
 
-## by [encodedcoder](https://www.encodedcoder.online/)
+## by [encodedcoder](https://www.encodedcoder.com/)
 
 Access Here: [Link Shortner](https://link-shortner-k5b9.onrender.com/)
 
@@ -14,7 +14,7 @@ This is a simple link shortener application built with TypeScript and Express. I
 ## Project Structure
 
 ```
-link-shortner
+linksnip
 ├── src
 │   ├── app.ts                # Entry point of the application
 │   ├── controllers           # Contains the URL controllers
@@ -43,11 +43,11 @@ link-shortner
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/link-shortner.git
+   git clone https://github.com/encodedcoder/linksnip.git
    ```
 2. Navigate to the project directory:
    ```
-   cd link-shortner
+   cd linksnip
    ```
 3. Install the dependencies:
    ```
