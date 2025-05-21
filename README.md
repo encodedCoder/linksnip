@@ -2,7 +2,7 @@
 
 ## by [encodedcoder](https://www.encodedcoder.com/)
 
-Access Here: [Link Shortner](https://link-shortner-k5b9.onrender.com/)
+Access Here: [Link Shortner](https://linksnip.site/)
 
 This is a simple link shortener application built with TypeScript and Express. It allows users to create shortened links and retrieve the original URLs.
 
